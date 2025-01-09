@@ -9,40 +9,7 @@ use Illuminate\Http\Request;
 class RechercheController extends Controller
 {
     public function recherche(Request $request)
-    {/*
-        $search = $request->input('recherche');       
-        
-        $vide = false;
-        $etablissement = null;
-        $entreprise = null;
-        $entreprise = Entreprise::where('siren','=', "$search")->first();
-        if ($entreprise != null) {
-            $etablissement = Etablissement::where('siren','=', "$search")->get();
-            
-        }
-        else {
-            $etablissement = Etablissement::where('siret', '=', "$search")->first();
-            if ($etablissement != null) {
-                $entreprise = Entreprise::where('siren','=', "$etablissement->siren")->first();
-            }else{
-                $entreprise = Entreprise::where('nomEntr', 'like', "%$search%")->get();
-                if (count($entreprise) == 0) {
-                    $vide = true;     
-                    $entreprise = null;
-                }elseif (count($entreprise) > 1) {
-                    $etablissement = collect();
-                    foreach ($entreprise as $entr) {
-                        $etabs = Etablissement::where('siren', $entr->siren)->get();
-                        foreach ($etabs as $etab) {
-                            $etablissement->push($etab);
-                        }
-                    }
-                }
-            }
-        }   
-        */
-
-
+    {
         $search = $request->input('recherche');
         $siren =false;
         $siret = false;
