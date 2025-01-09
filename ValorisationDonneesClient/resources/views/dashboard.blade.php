@@ -41,13 +41,19 @@
                                 @foreach($entreprise as $ent)
                                 
                                     @foreach($etablissement as $etab)
-                                        <div class="bg-gray-100 dark:bg-gray-700 min-h-64   p-4 rounded-lg shadow">
+                                        <div class="bg-gray-100 dark:bg-gray-700 min-h-64 p-4 rounded-lg shadow">
                                             <h3 class="text-lg font-semibold mb-2">{{ $ent->nomEntr }}</h3>
                                             <p class="text-sm ml-1 mb-1"><span class="font-medium">SIRET:</span> {{$etab->siret}} </p>
                                             <p class="text-sm ml-1 mb-1"><span class="font-medium">SIREN:</span> {{$etab->siren}}</p>
                                             <p class="text-sm ml-1 mb-1"><span class="font-medium">Adresse:</span> {{$etab->adresse}}</p>
-                                    
+                                            <div class="flex justify-end mt-9">
+                                                <div class="w-20 h-8 rounded-md bg-blue-500 hover:bg-blue-600">
+                                                    <a href="{{ route('etablissement.show', $etab->siret) }}" class="text-white text-center block p-1">Voir plus</a>
+                                                </div>
+                                            </div>
                                         </div>
+                                        
+                                        
                                     @endforeach
                                 @endforeach
                             
