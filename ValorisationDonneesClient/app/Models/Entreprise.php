@@ -12,13 +12,13 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Entreprise
  * 
- * @property int $siren
+ * @property string $siren
  * @property string $nomEntr
- * @property string $personneMoral
+ * @property string|null $personneMoral
  * @property string|null $nom
  * @property string|null $prenom
  * @property string|null $sexe
- * @property int|null $codenaf
+ * @property string|null $codenaf
  * @property string|null $libelleNaf
  * @property string|null $statutRcs
  * @property string|null $numRcs
@@ -33,10 +33,9 @@ class Entreprise extends Model
 	protected $primaryKey = 'siren';
 	public $incrementing = false;
 	public $timestamps = false;
-
 	protected $casts = [
-		'siren' => 'int',
-		'codenaf' => 'int'
+		'siren' => 'string',
+		'codenaf' => 'string'
 	];
 
 	protected $fillable = [

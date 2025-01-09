@@ -12,14 +12,15 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Etablissement
  * 
- * @property int $siret
- * @property int $siren
- * @property int $nic
+ * @property string $siret
+ * @property string $siren
+ * @property string $nic
  * @property string|null $ville
  * @property string|null $codePays
  * @property string|null $pays
  * @property bool $siege
- * @property int|null $codenaf
+ * @property bool $active
+ * @property string|null $codenaf
  * @property string|null $libelleNaf
  * @property string|null $adresse
  * 
@@ -37,12 +38,20 @@ class Etablissement extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'siret' => 'int',
-		'siren' => 'int',
-		'nic' => 'int',
+		'siret' => 'string',
+		'siren' => 'string',
+		'nic' => 'string',
+		'ville' => 'string',
+		'codePays' => 'string',
+		'pays' => 'string',
+		
 		'siege' => 'bool',
-		'codenaf' => 'int'
+		'active' => 'bool',
+		'codenaf' => 'string',
+		'libelleNaf' => 'string',
+		'adresse' => 'string'
 	];
+	
 
 	protected $fillable = [
 		'siren',
@@ -51,6 +60,7 @@ class Etablissement extends Model
 		'codePays',
 		'pays',
 		'siege',
+		'active',
 		'codenaf',
 		'libelleNaf',
 		'adresse'

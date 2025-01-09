@@ -13,11 +13,11 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $idNotes
  * @property int $id_user
- * @property int $siret
+ * @property string $siret
  * @property float $note
  * 
- * @property Etablissement $etablissement
  * @property User $user
+ * @property Etablissement $etablissement
  *
  * @package App\Models
  */
@@ -31,7 +31,6 @@ class Notation extends Model
 	protected $casts = [
 		'idNotes' => 'int',
 		'id_user' => 'int',
-		'siret' => 'int',
 		'note' => 'float'
 	];
 
@@ -41,13 +40,13 @@ class Notation extends Model
 		'note'
 	];
 
-	public function etablissement()
-	{
-		return $this->belongsTo(Etablissement::class, 'siret');
-	}
-
 	public function user()
 	{
 		return $this->belongsTo(User::class, 'id_user');
+	}
+
+	public function etablissement()
+	{
+		return $this->belongsTo(Etablissement::class, 'siret');
 	}
 }
