@@ -37,25 +37,33 @@
                              
                                 
                             
-
+                            
                                 @foreach($entreprise as $ent)
                                 
-                                @foreach($etablissements as $etablissement)
+                                    @foreach($etablissement as $etab)
                                         <div class="bg-gray-100 dark:bg-gray-700 min-h-64   p-4 rounded-lg shadow">
-                                            <h3 class="text-lg font-semibold mb-2">{{ $ent->siren }}</h3>
-                                            <p class="text-sm ml-1 mb-1"><span class="font-medium">SIRET:</span>{{$etablissement->siret}} </p>
-                                            <p class="text-sm ml-1 mb-1"><span class="font-medium">SIREN:</span> {{$etablissement->siren}}</p>
-                                            <p class="text-sm ml-1 mb-1"><span class="font-medium">Adresse:</span>{{$etablissement->adresse}}</p>
+                                            <h3 class="text-lg font-semibold mb-2">{{ $ent->nomEntr }}</h3>
+                                            <p class="text-sm ml-1 mb-1"><span class="font-medium">SIRET:</span> {{$etab->siret}} </p>
+                                            <p class="text-sm ml-1 mb-1"><span class="font-medium">SIREN:</span> {{$etab->siren}}</p>
+                                            <p class="text-sm ml-1 mb-1"><span class="font-medium">Adresse:</span> {{$etab->adresse}}</p>
                                     
                                         </div>
                                     @endforeach
                                 @endforeach
-                           
+                            
+                            
+                            
                         </div>
                     </div>
                 </div>
-            
+            @elseif(isset ($vide) && $vide==true)
+                <div class="bg-white dark:bg-gray-800 min-h-32  overflow-hidden shadow-sm sm:rounded-lg mt-10">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        <h1 class="text-2xl text-center font-semibold   mb-4 ">Aucun résultat trouvé</h1>
+                    </div>
+                </div>  
             @endif
+
         </div>
     </div>
 </x-app-layout>
