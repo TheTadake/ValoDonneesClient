@@ -12,12 +12,12 @@ use Illuminate\Database\Eloquent\Model;
  * Class Commentaire
  * 
  * @property int $idComm
- * @property int $siret
+ * @property string $siret
  * @property int $id_user
  * @property string $texte
  * 
- * @property Etablissement $etablissement
  * @property User $user
+ * @property Etablissement $etablissement
  *
  * @package App\Models
  */
@@ -30,7 +30,6 @@ class Commentaire extends Model
 
 	protected $casts = [
 		'idComm' => 'int',
-		'siret' => 'int',
 		'id_user' => 'int'
 	];
 
@@ -40,13 +39,13 @@ class Commentaire extends Model
 		'texte'
 	];
 
-	public function etablissement()
-	{
-		return $this->belongsTo(Etablissement::class, 'siret');
-	}
-
 	public function user()
 	{
 		return $this->belongsTo(User::class, 'id_user');
+	}
+
+	public function etablissement()
+	{
+		return $this->belongsTo(Etablissement::class, 'siret');
 	}
 }

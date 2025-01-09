@@ -10,26 +10,37 @@ class RechercheController extends Controller
 {
     public function recherche(Request $request)
     {
-        $search = $request->input('search');
-        $etablissement =false;
-        $entreprise = Entreprise::where('siren', 'like', "$search")->first();
+        $search = $request->input('recherche');       
+
+        $vide = false;
+        $etablissement = null;
+        $entreprise = null;
+        $entreprise = Entreprise::where('siren','=', "$search")->first();
         if ($entreprise != null) {
-            $etablissement = false;
+            $etablissement = Etablissement::where('siren','=', "$search")->get();
             
         }
         else {
-            $entreprise = Entreprise::where('nomEntr', 'like', "%$search%")->get();
-            if ($entreprise != null) {
-                $etablissement = false;
-                
-            }else {
-                $entreprise = Etablissement::where('siret', 'like', "$search")->first();
-                if ($entreprise != null) {
-                    $etablissement = true;
-                    
+            $etablissement = Etablissement::where('siret', '=', "$search")->first();
+            if ($etablissement != null) {
+                $entreprise = Entreprise::where('siren','=', "$etablissement->siren")->first();
+            }else{
+                $entreprise = Entreprise::where('nomEntr', 'like', "%$search%")->get();
+                if (count($entreprise) == 0) {
+                    $vide = true;     
+                    $entreprise = null;
+                }elseif (count($entreprise) > 1) {
+                    $etablissement = collect();
+                    foreach ($entreprise as $entr) {
+                        $etabs = Etablissement::where('siren', $entr->siren)->get();
+                        foreach ($etabs as $etab) {
+                            $etablissement->push($etab);
+                        }
+                    }
                 }
             }
-        }
-        return view('recherche', ['entreprise' => $entreprise, 'etablissement' =>$etablissement]);
+        }   
+        
+        return view('dashboard', ['entreprise' => $entreprise, 'etablissements' =>$etablissement , 'vide' => $vide]);
     }
 }
