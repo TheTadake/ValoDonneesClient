@@ -14,7 +14,7 @@
 
                     const myHeaders = new Headers();
                     myHeaders.append("Accept", "application/json");
-                    myHeaders.append("X-Authorization", "socapi f8cfa643b3ec63dfeb3a5e7a495f20fb");
+                    myHeaders.append("X-Authorization", "");
 
                     const requestOptions = {
                         method: "GET",
