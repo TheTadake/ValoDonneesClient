@@ -15,7 +15,7 @@ Route::get('/recherche', [RechercheController::class, 'recherche'])->middleware(
 Route::post('/comments/store', [EtablisementControlleur::class, 'store'])->name('comments.store')->middleware(['auth', 'verified']);
 Route::get('/Etab/{siret}', [EtablisementControlleur::class, 'show'])->middleware(['auth', 'verified'])->name('etablissement.show');
 Route::get('/AjoutEntreprise', [AjoutEntrepriseControlleur::class, 'index'])->middleware(['auth', 'verified'])->name('AjoutEntreprise');
-
+Route::post('/AjoutEntreprise', [AjoutEntrepriseControlleur::class, 'ajouter'])->middleware(['auth', 'verified'])->name('entreprise.store');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
